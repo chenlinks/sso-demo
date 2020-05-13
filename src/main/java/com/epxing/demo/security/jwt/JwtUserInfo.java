@@ -24,4 +24,8 @@ public class JwtUserInfo {
      * 企业ID
      */
     private String enterpriseCode;
+
+    private String account;
+
+    private String accountId;
 }

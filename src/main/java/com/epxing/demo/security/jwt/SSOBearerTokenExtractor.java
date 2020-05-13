@@ -1,5 +1,6 @@
 package com.epxing.demo.security.jwt;
 
+import com.alibaba.fastjson.JSONObject;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import lombok.extern.slf4j.Slf4j;
@@ -11,9 +12,14 @@ import org.springframework.security.oauth2.provider.authentication.BearerTokenEx
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -29,7 +35,6 @@ public class SSOBearerTokenExtractor extends BearerTokenExtractor {
 
     @Autowired
     private JwtAccessTokenConverter jwtAccessTokenConverter;
-
 
     @Override
     public Authentication extract(HttpServletRequest request) {
@@ -47,12 +52,10 @@ public class SSOBearerTokenExtractor extends BearerTokenExtractor {
                 log.error("token验证错误", e);
                 throw new BadClientCredentialsException();
             }
-
             PreAuthenticatedAuthenticationToken authentication = new PreAuthenticatedAuthenticationToken(tokenValue, "");
             return authentication;
         }else{
-            log.error("token is null");
+            throw new BadClientCredentialsException();
         }
-        return null;
     }
 }

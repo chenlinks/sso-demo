@@ -12,19 +12,19 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
  * @author chenling
  * @date 2020/5/13 0:02
  * @since V1.0.0
- */
-@Configuration
-public class ResourceConfig {
-
-    @Bean
-    public JwtAccessTokenConverter jwtAccessTokenConverter() {
-        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-//        converter.setSigningKey(JwtConstants.JWT_SECRET);
-        return converter;
-    }
-
-    @Bean
-    public TokenStore tokenStore(){
-        return new JwtTokenStore(jwtAccessTokenConverter());
-    }
-}
+// */
+//@Configuration
+//public class ResourceConfig {
+//
+//    @Bean
+//    public JwtAccessTokenConverter jwtAccessTokenConverter() {
+//        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+////        converter.setSigningKey(JwtConstants.JWT_SECRET);
+//        return converter;
+//    }
+//
+//    @Bean
+//    public TokenStore tokenStore(){
+//        return new JwtTokenStore(jwtAccessTokenConverter());
+//    }
+//}
